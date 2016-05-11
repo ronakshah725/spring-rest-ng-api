@@ -1,30 +1,41 @@
 (function(angular) {
-  var AppController = function($scope, Item) {
-    Item.query(function(response) {
-      $scope.items = response ? response : [];
+  var AppController = function($scope, Vehicle) {
+    Vehicle.query(function(response) {
+      
+      // // model for bs-table
+      // $scope.contactList = [];
+
+      // // get contact list
+      // $scope.contactList = SomeService.GetAll();
+
+      $scope.vehicles = response ? response : [];
     });
     
-    $scope.addItem = function(description) {
-      new Item({
-        description: description,
-        checked: false
-      }).$save(function(item) {
-        $scope.items.push(item);
+    $scope.addVehicle = function(year,make, model) {
+      new Vehicle({
+        year: year,
+        make: make,
+        model: model
+
+      }).$save(function(vehicle) {
+        $scope.vehicles.push(vehicle);
       });
-      $scope.newItem = "";
+      $scope.newYear = "";
+      $scope.newMake = "";
+      $scope.newModel = "";
     };
     
-    $scope.updateItem = function(item) {
-      item.$update();
+    $scope.updateVehicle = function(vehicle) {
+      vehicle.$update();
     };
     
-    $scope.deleteItem = function(item) {
-      item.$remove(function() {
-        $scope.items.splice($scope.items.indexOf(item), 1);
+    $scope.deleteVehicle = function(vehicle) {
+      vehicle.$remove(function() {
+        $scope.vehicles.splice($scope.vehicles.indexOf(vehicle), 1);
       });
     };
   };
   
-  AppController.$inject = ['$scope', 'Item'];
+  AppController.$inject = ['$scope', 'Vehicle'];
   angular.module("myApp.controllers").controller("AppController", AppController);
 }(angular));

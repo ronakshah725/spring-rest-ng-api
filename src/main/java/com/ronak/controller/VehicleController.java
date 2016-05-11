@@ -9,7 +9,7 @@ import com.ronak.model.Vehicle;
 import com.ronak.repository.VehicleRepository;
 
 @RestController
-@RequestMapping("/Vehicles")
+@RequestMapping("/vehicles")
 public class VehicleController {
 	@Autowired
 	private VehicleRepository repo;
@@ -47,24 +47,24 @@ public class VehicleController {
 	public Vehicle findVehiclesById(@PathVariable Integer Id) {
 		return repo.findOne(Id);
 	}
-
-	/**
-	 * @param make
-	 * @return
-	 */
-	@RequestMapping(value = "/{make}", method = RequestMethod.GET)
-	public List<Vehicle> findVehiclesByMake(@PathVariable String make) {
-		return repo.findByMake(make);
-	}
-
-	/**
-	 * @param model
-	 * @return
-	 */
-	@RequestMapping(value = "/{model}", method = RequestMethod.GET)
-	public List<Vehicle> findVehiclesByModel(@PathVariable String model) {
-		return repo.findByModel(model);
-	}
+//
+//	/**
+//	 * @param make
+//	 * @return
+//	 */
+//	@RequestMapping(value = "/{make}", method = RequestMethod.GET)
+//	public List<Vehicle> findVehiclesByMake(@PathVariable String make) {
+//		return repo.findByMake(make);
+//	}
+//
+//	/**
+//	 * @param model
+//	 * @return
+//	 */
+//	@RequestMapping(value = "/{model}", method = RequestMethod.GET)
+//	public List<Vehicle> findVehiclesByModel(@PathVariable String model) {
+//		return repo.findByModel(model);
+//	}
 
 	/*****************UPDATE******************/
 	
@@ -76,6 +76,8 @@ public class VehicleController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public Vehicle updateVehicle(@RequestBody Vehicle updatedVehicle, @PathVariable Integer id) {
 		updatedVehicle.setId(id);
+		System.out.println("edit");
+
 		return repo.saveAndFlush(updatedVehicle);
 	}
 
@@ -87,6 +89,7 @@ public class VehicleController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public void deleteVehicle(@PathVariable Integer id) {
 		repo.delete(id);
+		
 	}
 
 }

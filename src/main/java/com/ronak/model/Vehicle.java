@@ -12,8 +12,6 @@ public class Vehicle {
 	  @GeneratedValue(strategy=GenerationType.IDENTITY)
 	  private Integer id;
 	  
-	  @Column
-	  private boolean checked;
 	  
 	  @Column
 	  private int year;
@@ -36,20 +34,6 @@ public class Vehicle {
 	 */
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	/**
-	 * @return the checked
-	 */
-	public boolean isChecked() {
-		return checked;
-	}
-
-	/**
-	 * @param checked the checked to set
-	 */
-	public void setChecked(boolean checked) {
-		this.checked = checked;
 	}
 
 	/**
@@ -93,17 +77,24 @@ public class Vehicle {
 	public void setModel(String model) {
 		this.model = model;
 	}
+	
+	
 
+	
+	
+	//For testing purposes
+	public Vehicle(Integer id, int year, String make, String model) {
+		this.id = id;
 
-	
-	
-	
-	@Override
-	public String toString() {
-		return "Vehicle [id=" + id + ", checked=" + checked + ", year=" + year + ", make=" + make + ", model=" + model
-				+ "]";
+		this.year = year;
+		this.make = make;
+		this.model = model;
 	}
 	
+	public Vehicle(){
+		
+	}
+
 	
 	  
 	  

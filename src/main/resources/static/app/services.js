@@ -1,6 +1,6 @@
 (function(angular) {
-  var ItemFactory = function($resource) {
-    return $resource('/items/:id', {
+  var VehicleFactory = function($resource) {
+    return $resource('/vehicles/:id', {
       id: '@id'
     }, {
       update: {
@@ -12,6 +12,6 @@
     });
   };
   
-  ItemFactory.$inject = ['$resource'];
-  angular.module("myApp.services").factory("Item", ItemFactory);
+  VehicleFactory.$inject = ['$resource'];
+  angular.module("myApp.services").factory("Vehicle", VehicleFactory);
 }(angular));
